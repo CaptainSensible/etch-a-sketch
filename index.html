@@ -24,11 +24,6 @@
 		const rstbtn = document.getElementById("btn")
 
 
-		//tells initGrid() to fire when page loads
-
-
-		//the "let boxSize = " divides the pixels of "#container" with the number of rows, then adds the string of "px" to that number to give something like 43px (so they fit pretty into the div) 
-		//the "box.addEventListener... etc" is what changes the color with the mouse. I had to add that eventListener/function inside this "initGrid" function because the box variable (and the divs themselves) dont exist until they are created in this function and are out of scope outside the function. 
 
 		initGrid(16);
 
@@ -53,8 +48,10 @@
 
 
 		rstbtn.addEventListener("click", function(){
-			let newnum = window.prompt ("Enter how many tiles you would like the new grid to be.", "16");
-			initGrid(newnum);
+			let newNum = window.prompt ("Enter how many tiles you would like the new grid to be.", "16");
+			container.innerHTML="";
+			initGrid(newNum);
+
 		});
 
  		
