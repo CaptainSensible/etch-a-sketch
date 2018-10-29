@@ -25,20 +25,33 @@
 
 
 		//Function to generate random color.
-		let color = function Color() {
+		function color() {
 			let randomNum = Math.floor(Math.random() * 10);
-			return (randomNum);
+			if (randomNum == 0){
+				return "yellow";
+			}else if(randomNum == 1){
+				return "orange";
+			}else if(randomNum == 2){
+				return "red";
+			}else if(randomNum == 3){
+				return "maroon";
+			}else if(randomNum == 4){
+				return "blue";
+			}else if(randomNum == 5){
+				return "indigo";
+			}else if(randomNum == 6){
+				return "pink";
+			}else if(randomNum == 7){
+				return "purple";
+			}else if(randomNum == 8){
+				return "green";
+			}else if(randomNum == 9){
+				return "lime";
+			}else{
+				return "black";
+			}
 		};
-		/*red;
-		yellow;
-		green;
-		blue;
-		white;
-		black;
-		orange;
-		pink;
-		purple;
-		maroon;*/
+			console.log(color());		
 
 		//the "let boxSize = " divides the pixels of "#container" with the number of rows, then adds the string of "px" to that number to give something like 43px (so they fit pretty into the div) 
 		//the "box.addEventListener... etc" is what changes the color with the mouse. I had to add that eventListener/function inside this "initGrid" function because the box variable (and the divs themselves) dont exist until they are created in this function and are out of scope outside the function. 
@@ -56,7 +69,7 @@
 					box.classList.add("boxes");
 					container.appendChild(box);
 					box.addEventListener ("mouseover",function(){
-					box.style.backgroundColor = "orange";
+					box.style.backgroundColor = color();
 					});
 				}
 			}
