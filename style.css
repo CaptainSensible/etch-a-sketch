@@ -40,7 +40,7 @@ header {
 
 .boxes{
 	background-color: red;
-	border:thin solid white;
+	border: 0.125px solid white;
 	box-sizing: border-box;
 }
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>sketchy sketch</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+		<h1 class="title">Etch-A-Sketch</h1>
+	</header>
+	<div id="wrapper">
+		<button id="btn">Reset Grid</button>
+    </div>
+	<div id="container">
+	</div>
+	<div id="prompt">
+	</div>
+
+
+	<script type="text/javascript">
+		const container = document.getElementById("container");
+		const rstbtn = document.getElementById("btn")
+		
+
+
+
+		//Function to generate random number. Used below in "box.addEventListener...etc".
+		//"Math.random" finds a # between 0-1.
+		// I dont really understand the "max-min" stuff. It has something to do generating (the intensity of) RGB colors between 0 and 255.
+		//"Math.floor" rounds the number down to its nearest whole number (integer).
+		function randomInt(min, max){
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	
+
+		//the "let boxSize = " divides the pixels of "#container" with the number of rows, then adds the string of "px" to that number to give something like 43px (so they fit pretty into the div) 
+		//the "box.addEventListener... etc" is what changes the color with the mouse. I had to add that eventListener/function inside this "initGrid" function because the box variable (and the divs themselves) dont exist until they are created in this function and are out of scope outside the function. 
+
+		initGrid(16);
+
+		function initGrid(num){
+			for (let i=0; i<num; i++){
+				for (let j=0; j<num; j++){
+
+					let box = document.createElement("div");
+         			let boxSize = (690/num) + "px";
+         			box.style.height = boxSize;
+         			box.style.width = boxSize;
+					box.classList.add("boxes");
+					container.appendChild(box);
+
+					box.addEventListener ("mouseover",function(){
+						setInterval(function(){
+						let r = randomInt(0,255);
+						let g = randomInt(0,255);
+						let b = randomInt(0,255);
+						let color = "rgb("+ r + "," + g + "," + b + ")";
+						box.style.backgroundColor = color;
+						},100);
+					});
+				}
+			}
+		}
+
+
+
+		//when "reset grid" button is clicked the below brings up the prompt and assigns the returned number to the variable "newNum".
+		//then "container.innerHTML..." clears the previous children of the "container" div.
+		//lastly, it points back to the "initGrid" function with the "newNum" argument given. 
+		rstbtn.addEventListener("click", function(){
+			let newNum = window.prompt ("Enter how many tiles you would like the new grid to be.", "16");
+			container.innerHTML="";
+			initGrid(newNum);
+
+		});
+
+ 		
+	</script>
+			
+
+</body>
+
+</html>
