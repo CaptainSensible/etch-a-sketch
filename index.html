@@ -2,21 +2,29 @@
 <html>
 
 <head>
-	<title>sketchy sketch</title>
+	<title>Etch-a-sketch</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<header>
-		<h1 class="title">Etch-A-Sketch</h1>
-	</header>
+	<div id="banner">
+		<img id="header" src="header.jpg">
+		<h1 class="title">Sketch</h1>
+	</div>
+	<hr id=breaker>
 	<div id="wrapper">
 		<button id="btn">Reset Grid</button>
     </div>
 	<div id="checkBoxes">
-  		<input type="radio" name = "option" id="black" checked="checked">darker<br>
-  		<input type="radio" name = "option" id="color">colors<br>
-  		<input type="radio" name = "option" id="psych"> psychedelic<br>
+		<label class= "btnCont">
+		  <input type="radio" name = "option" id="black" checked="checked"> Paint it black
+		</label>
+		<label class= "btnCont">
+		  <input type="radio" name = "option" id="color"> Rainbow
+		</label>
+		<label class= "btnCont">
+		  <input type="radio" name = "option" id="psych"> Psychedelic
+		</label>
 	</div>
 	<div id="container">
 	</div>
@@ -25,7 +33,7 @@
 
 	<script type="text/javascript">
 
-		//Need to fix Psychedelic function.
+		// I think I should put some if/else statemnt in the "reset button function" so that if they choose over 150 the system says they are being greedy or something. cause over that looks bad and is a cpu strain.
 	const container = document.querySelector("#container");
 	const rstbtn = document.getElementById("btn");
 	const black = document.getElementById("black");
@@ -58,40 +66,38 @@
 				box.classList.add("boxes");
 				container.appendChild(box);
 				console.log("box", tiles);
-
-
 			}
 		}
+					//I think this is saying - call the divs created above (class=boxes) and call them "boxes". Then for each individual box listen for mouseover and when that happens do the function below.
 		boxes = document.querySelectorAll(".boxes");
-				boxes.forEach(box => box.addEventListener('mouseover', function(){	
-					let choice;
-						if (black.checked == true){
-					choice=darker(this);
-						}else if (color.checked == true){
-					choice=colors();
-						}else if(psych.checked == true){
-							setInterval(function(){
-							let r = randomInt(0,255);
-							let g = randomInt(0,255);
-							let b = randomInt(0,255);
-							let psych = "rgb("+ r + "," + g + "," + b + ")";
-							box.style.backgroundColor = psych;
-							},150);
-						}else{
-					choice=darker(this);
-					}
-					this.style.backgroundColor = choice;
-				}))
+		boxes.forEach(box => box.addEventListener('mouseover', function(){
+				//choice between radio buttons. The "this" below for style.background is something I do not understand but it seems to work better than "box" hopefully I will get it at some point later.	
+			let choice;
+			if (black.checked == true){
+				choice=darker(this);
+			}else if (color.checked == true){
+				choice=colors();
+			}else if(psych.checked == true){
+					//psych function
+				setInterval(function(){
+					let r = randomInt(0,255);
+					let g = randomInt(0,255);
+					let b = randomInt(0,255);
+					let psych = "rgb("+ r + "," + g + "," + b + ")";
+					box.style.backgroundColor = psych;
+				},150);
+			}else{
+				choice=darker(this);
+			}
+			this.style.backgroundColor = choice;
+		}))
 	};
-		//I think this is saying - call the divs created above (class=boxes) and call them "boxes". Then for each individual box listen for mouseover and when that happens go to draw().
+
+			//used for the "psych" selection in the "setInterval" function above. generates randon number 
 	function randomInt(min, max){
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	};
 
-
-	//choice between radio buttons. The "this" below for style.background is something I do not understand but it seems to work better than "box" hopefully I will get it at some point later.
-
-		//choice between radio buttons. The "this" below for style.background is something I do not understand but it seems to work better than "box" hopefully I will get it at some point later.
 
 
 	//black function
@@ -144,14 +150,6 @@
 		}
 	};
  		
-
-
-	//used for the "psych" selection in the "setInterval" function below. generates randon number 
-
-
-	//psych function
-
-
 
 	</script>
 			

@@ -51,15 +51,18 @@
 					box.classList.add("boxes");
 					container.appendChild(box);
 
-					box.addEventListener ("mouseover",function(){
+
+				boxes = document.querySelectorAll(".boxes");
+				boxes.forEach(box => box.addEventListener('mouseover', function()	
+					{
 						setInterval(function(){
 						let r = randomInt(0,255);
 						let g = randomInt(0,255);
 						let b = randomInt(0,255);
-						let color = "rgb("+ r + "," + g + "," + b + ")";
-						box.style.backgroundColor = color;
-						},100);
-					});
+						let psych = "rgb("+ r + "," + g + "," + b + ")";
+						box.style.backgroundColor = psych;
+						},500);
+					}));
 				}
 			}
 		}
